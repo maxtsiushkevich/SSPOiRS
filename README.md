@@ -8,6 +8,7 @@ The server must support the execution of several commands, but at least it must 
   1. ECHO (returns data transmitted by the client after the command),
   2. TIME (returns the current server up-time),
   3. CLOSE (EXIT/QUIT) (closes the connection).
+
 The client is supposed to use system utilities: telnet, netcat and others.
 
 # Lab work 2
