@@ -1,0 +1,42 @@
+  Transmission is made reliable via the use of sequence numbers and
+acknowledgments.  Conceptually, each octet of data is assigned a
+sequence number.  The sequence number of the first octet of data in a
+segment is transmitted with that segment and is called the segment
+sequence number.  Segments also carry an acknowledgment number which
+is the sequence number of the next expected data octet of
+transmissions in the reverse direction.  When the TCP transmits a
+segment containing data, it puts a copy on a retransmission queue and
+starts a timer; when the acknowledgment for that data is received, the
+segment is deleted from the queue.  If the acknowledgment is not
+received before the timer runs out, the segment is retransmitted.
+
+  An acknowledgment by TCP does not guarantee that the data has been
+delivered to the end user, but only that the receiving TCP has taken
+the responsibility to do so.
+
+  To govern the flow of data between TCPs, a flow control mechanism is
+employed.  The receiving TCP reports a "window" to the sending TCP.
+This window specifies the number of octets, starting with the
+acknowledgment number, that the receiving TCP is currently prepared to
+receive.
+ To identify the separate data streams that a TCP may handle, the TCP
+provides a port identifier.  Since port identifiers are selected
+independently by each TCP they might not be unique.  To provide for
+unique addresses within each TCP, we concatenate an internet address
+identifying the TCP with a port identifier to create a socket which
+will be unique throughout all networks connected together.
+
+  A connection is fully specified by the pair of sockets at the ends.  A
+local socket may participate in many connections to different foreign
+sockets.  A connection can be used to carry data in both directions,
+that is, it is "full duplex".
+
+  TCPs are free to associate ports with processes however they choose.
+However, several basic concepts are necessary in any implementation.
+There must be well-known sockets which the TCP associates only with
+the "appropriate" processes by some means.  We envision that processes
+may "own" ports, and that processes can initiate connections only on
+the ports they own.  (Means for implementing ownership is a local
+issue, but we envision a Request Port user command, or a method of
+uniquely allocating a group of ports to a given process, e.g., by
+associating the high order bits of a port name with a given process.)
