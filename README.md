@@ -29,3 +29,19 @@ Implement:
   1.  Mechanism for monitoring the sequence of received datagrams
   2. timeout mechanism – periodic sending of control packets to check the availability of the other side of the interaction, termination of the session with the client / server in case of absence of control packets during a fixed time interval
   3. control of the transmission flow — reducing the load on the receiver in case of slow processing
+
+# Lab work 1 Sem 7
+
+Implementation of a program for parallel ping of several hosts. Each thread pings one host.
+The ability to determine the path to each destination node is implemented -- a mechanism similar to traceroute. 
+The ping utility is converted to perform a Smurf attack.
+
+For ping (ping is multithreading):
+```
+$ sudo python main.py <ipAddr1 to ping> <number of attempts> ... <ipAddr to ping> <number of attempts> 
+```
+
+For traceroute:
+```
+$ sudo python main.py traceroute:<ip addr> 
+```
